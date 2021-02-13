@@ -1,14 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createStore, combineReducers } from "redux";
+import ReducerUser from "./ReducerUser";
+import { reducer as formReducer } from "redux-form";
 
+import { Provider } from "react-redux";
+const rootReducer = combineReducers({
+  form: formReducer,
+  user: ReducerUser,
+});
+const store = createStore(rootReducer);
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
